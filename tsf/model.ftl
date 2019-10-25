@@ -1,5 +1,5 @@
 package ${functions.packageName('model')};
-<#if functions.properties('jsonField')=='true'>
+<#if functions.properties('jsonFormat')=='true'>
 import com.alibaba.fastjson.annotation.JSONField;
 </#if>
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -9,9 +9,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 </#if>
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-<#if functions.properties('jsonFormat')=='true'>
-import com.fasterxml.jackson.annotation.JsonFormat;
-</#if>
+
 
 
 import lombok.Data;
@@ -71,7 +69,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
     </#if>
     <#if functions.properties('jsonFormat')=='true'>
         <#if f.type.name = 'java.util.Date'>
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
         </#if>
     </#if>
      <#if functions.properties('jsonProperty')=='true'>
